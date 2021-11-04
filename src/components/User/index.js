@@ -10,9 +10,7 @@ const User = () => {
     <div className="grand">
       <div className="userBox">
         <h1>Enter Your name</h1>
-        <form 
-        // onSubmit={handleSubmit()}
-        >
+        <form>
           <input
             id="textField"
             type="text"
@@ -20,7 +18,7 @@ const User = () => {
             onChange={(e) => setUserName(e.target.value)}
           />
           <div className="submitBtn">
-            <button className="enterBtn">Start</button>
+            <button className="enterBtn">Enter</button>
           </div>
         </form>
       </div>
