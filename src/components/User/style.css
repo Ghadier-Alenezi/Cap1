@@ -1,10 +1,13 @@
-.grand {
+.user {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(236, 236, 236);
+  background-image: url(https://external-preview.redd.it/0cRUVEHWT6ZfknVjAM3cIA7y7w7s8UEZc8838Usax7Y.png?width=960&crop=smart&auto=webp&s=bf3bb7f83b821502d62c1d25628cd60dced220a2);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: center;
 }
 .userBox {
   width: 70vw;
@@ -13,11 +16,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(189, 189, 230);
   margin: 20px auto;
   border-radius: 5px;
 }
+.formSection {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.enterT {
+  width: 30%;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-family: fantasy;
+  font-size: bold;
+}
 .enterBtn {
+  width: 50%;
   height: 30px;
   padding: 10px;
   border: none;
@@ -25,18 +43,21 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-family: fantasy;
 }
 .enterBtn:hover {
-  background-color: rgb(231, 118, 118);
+  background-color: rgb(159, 128, 194);
+  color: white;
 }
 .submitBtn {
   text-align: center;
   margin: 10px;
 }
 #textField {
-  height: 30px;
   width: 100%;
+  height: 30px;
   border: none;
+  padding: 5px;
   margin-top: 20px;
   border-radius: 5px;
   border-bottom: solid 1px gray;

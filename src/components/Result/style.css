@@ -1,4 +1,4 @@
-.grand {
+.result {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -46,8 +46,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  font-family: fantasy;
 }
 
 #restartBtn:hover {
-  background-color: rgb(231, 118, 118);
+  background-color: rgb(159, 128, 194);
+  color: white;
 }

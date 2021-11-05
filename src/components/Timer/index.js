@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const Timer = () => {
-  let [timeSeconds, setTimeSeconds] = useState("60");
+  let [timeSeconds, setTimeSeconds] = useState("45");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +27,7 @@ const Timer = () => {
   return (
     <div className="timer">
       <span>{timeSeconds}</span>
-      <span>Secondes</span>
+
     </div>
   );
 };

@@ -1,22 +1,25 @@
-import React, {useEffect} from "react";
-
+import React from "react";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 
 const Result = () => {
-
+  const history = useHistory();
+  function playAgain() {
+    history.push("/Game/:userName");
+  }
   return (
-    <div className="grand">
+    <div className="result">
       <div className="resultBox">
         <div className="up">
           <h2>Congratulations</h2>
-
           <h3>User Name</h3>
           <h2>255</h2>
         </div>
-{/* animations */}
 
         <div className="down">
-          <button id="restartBtn">Restart</button>
+          <button id="restartBtn" onClick={playAgain}>
+            play again?
+          </button>
         </div>
       </div>
     </div>
