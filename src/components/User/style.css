@@ -4,12 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-image: url(https://media3.giphy.com/media/3o7TKzyIPAiMR1pErK/200w.webp?cid=ecf05e47ehpuj9lobtp9jfuz7ekk8pkmxyps3xjrj1ei7mig&rid=200w.webp&ct=g); */
-  background-repeat: no-repeat;
-  background-size: contain;
-  object-fit: none;
-  transform: matrix3d(23);
-  background-position: center;
+
 }
 .userBox {
   width: 70vw;
@@ -21,23 +16,7 @@
   margin: 20px auto;
   border-radius: 5px;
 }
-.formSection {
-  width: 100%;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-}
-.enterT {
-  width: 30%;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-  font-family: fantasy;
-  font-size: bold;
-}
 .enterBtn {
-  width: 50%;
   height: 30px;
   padding: 10px;
   border: none;
@@ -45,21 +24,18 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  font-family: fantasy;
 }
 .enterBtn:hover {
-  background-color: rgb(159, 128, 194);
-  color: white;
+  background-color: rgb(231, 118, 118);
 }
 .submitBtn {
   text-align: center;
   margin: 10px;
 }
 #textField {
-  width: 100%;
   height: 30px;
+  width: 100%;
   border: none;
-  padding: 5px;
   margin-top: 20px;
   border-radius: 5px;
   border-bottom: solid 1px gray;

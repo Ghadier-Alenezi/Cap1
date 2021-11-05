@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-const Timer = () => {
-  let [timeSeconds, setTimeSeconds] = useState("10");
+const Timer = (props) => {
+  let [timeSeconds, setTimeSeconds] = useState("60");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -11,8 +11,8 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const userName = useParams().userName;
   const history = useHistory();
+  const userName = useParams().userName;
   const playAgain =()=> {
     history.push(`/Game/${userName}`);
   }
@@ -23,7 +23,8 @@ const Timer = () => {
       setTimeSeconds(timeSeconds--);
       // console.log(timeSeconds);
     } else {
-      history.push(`/Result/${userName}`);
+      history.push(`/Result/${userName}/${props.result}`);
+     
     }
   }
   useEffect(() => updateTime, [10]);

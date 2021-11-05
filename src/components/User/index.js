@@ -14,16 +14,15 @@ const User = () => {
   return (
     <div className="user">
       <div className="userBox">
-        <h1 className="enterT">Enter Your name</h1>
-
-        <form className="formSection"
+        <h1>Enter Your name</h1>
+        <form 
         onSubmit={userNameF}
         >
           <input
             id="textField"
             type="text"
             name="userName"
-           placeholder="Your name is.."
+           
           />
          
             <button
@@ -34,7 +33,6 @@ const User = () => {
             </button>
           
         </form>
-
       </div>
     </div>
   );

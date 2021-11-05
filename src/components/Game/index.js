@@ -1,9 +1,11 @@
 import React from "react";
 import { useParams, useHistory } from "react-router";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Card from "../Card";
 import Timer from "../Timer";
 import "./style.css";
+import { Route, Link, Switch } from "react-router-dom";
+import User from "../User";
 
 // {
 //   name: "plants7",
@@ -13,7 +15,10 @@ import "./style.css";
 
 function Game() {
   const userName = useParams().userName;
-
+  const history = useHistory();
+  const userNameF = (e) => {
+    history.push(`/Result/${userName}/${result}`);
+  };
   const [arr, setArr] = useState([
     {
       name: "plants7",
@@ -66,6 +71,7 @@ function Game() {
   let [result, setResult] = useState(0); // init value result =0
   let [img1, setImage1] = useState(null); // intial value for obj img1 =null
   let [img2, setImage2] = useState(null); // intial value for obj img2 =null
+  let [permission,setPermission] =useState(false);
 
   //  array & copy array elem => array.length*2
   useEffect(() => {
@@ -104,6 +110,7 @@ function Game() {
   // rest choises
   useEffect(() => {
     if (img1 && img2) {
+      setPermission(true)
       if (img1.name === img2.name) {
         // match card => add 1 to result &rest
         result = result + 1;
@@ -117,47 +124,74 @@ function Game() {
           }
         }); //loop end
         setArr(cards);
-        restFunc(img1, img2);
+
+        setTimeout(()=>restFunc(), 1000);// to hold card until card back
       } else {
-        restFunc(img1, img2);
+        setTimeout(()=>restFunc(), 1000);// to hold card until card back
       }
-      setResult(result); // to show on screen
+      setResult(result);
+      if (result === 9) {
+        //if user finsh    // end of the game
+        history.push(`/Result/${userName}/${result}`);
+      } // to show on screen
     }
   }, [img1, img2]); // depend if there is img1,img2 or do not do the effect
 
   //reset func
-  const restFunc = (img1, img2) => {
-    img1 = null; //rest img1
-    setImage1(img1);
-    img2 = null; //rest img2
-    setImage2(img2);
-    return;
-  };
+  const restFunc = () => {
+    //rest img1
+    setImage1(null);
+    //rest img2
+    setImage2(null);
+    setPermission(false);
+    setResult(result);
+  }; 
+    // end of the game
+    // const history = useHistory();
+    // const gameOver = () => {
+    //   if (result === 9) {
+    //     history.push(`/Result/${userName}`);
+    //   }
+    // };
+    // gameOver();
 
-  // end of the game
-  const history = useHistory();
-  const gameOver = () => {
-    if (result === 9) {
-      history.push(`/Result/${userName}`);
+    // quit alert
+    let quit = () => {
+      if (window.confirm("Are you sure you want to quit the game?!")) {
+        
+        
+        window.open("/","Thank you for Playing");
+      }
+      
+      
+      // let quitAlert = window.confirm(
+      //   "Are you sure you want to quit"
+      // )
+      // if (quitAlert === true) {
+      //   console.log("confirm");
+      //  <Switch>
+      //    <Route exact path="/User" component={User} />
+      //   {/* <User/> */}
+        
+      //  </Switch>
+      // } 
     }
-  };
-  gameOver();
-
 
   return (
     <div className="game">
-      <div className="gap"></div>
+      <div className="gameInfo">
       <p>
-        Good Luck <span>{userName}!</span> You have only{" "}
+        Good Luck <span>{userName}!</span> You have only
         <span>
-          <Timer />{" "}
+          <Timer result={result} />
         </span>
-        You Score is = {result}
+        second. You Score is = {result}
       </p>
-      <div className="gap"></div>
-
-      <div className="gap"></div>
-
+      <button onClick={quit}>
+        {/* <Link to="/">Quit</Link> */}
+        click
+      </button>
+      </div>
       <div className="gameBox">
         {arr.map((elem, i) => (
           <Card
@@ -165,6 +199,8 @@ function Game() {
             elem={elem}
             tempImg={tempImg} //for hold chosen elem in card component
             key={i}
+            switchCard={elem === img1 || elem === img2 || elem.isSucssed}
+            permission = {permission}
           />
         ))}
       </div>

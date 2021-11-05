@@ -10,13 +10,13 @@ import "./style.css";
 const App = () => {
   return (
     <>
-  <Nav/>
+  {/* <Nav/> */}
       <Switch>
       
-        <Route exact path="/User" component={User} />
+        <Route exact path="/" component={User} />
         <Route exact path="/Description/:userName" component={Description} />
         <Route exact path="/Game/:userName" component={Game} />
-        <Route exact path="/Result/:userName" component={Result} />
+        <Route exact path="/Result/:userName/:result" component={Result} />
       </Switch>
 
     </>

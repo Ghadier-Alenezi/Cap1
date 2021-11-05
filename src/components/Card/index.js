@@ -4,17 +4,28 @@ import './style.css'
 const Card=(props) =>{
 
     const handelClick =(elem) =>{
-        props.tempImg(elem)// send choosen card to tempfunc in game component
+       // send choosen card to tempfunc in game component
+        if(!props.permission){
+            props.tempImg(elem)
+        }
     }
 
     return (
-        <div className="card">      
-        <img  id="card"
+        <div className={props.elem.isSucssed ? `card hideImg` : `card showImg`}>
+        <div className={props.switchCard? `card switch` : `card`} >  
+        <img
+        className="front"
         src={props.elem.src} 
-        onClick={(e)=>{handelClick(props.elem)}}
-        className={props.elem.isSucssed ? `hideImg` : `showImg`} 
         alt=""/>
+    
+        <img  className="back"
+       src="https://images5.alphacoders.com/492/492784.jpg"
+        onClick={(e)=>{handelClick(props.elem)}}
+        
+        alt=""/>
+        </div>
         </div>
     )
 }
+
 export default Card
