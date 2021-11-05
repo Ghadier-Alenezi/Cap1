@@ -1,8 +1,8 @@
 import React from "react";
-import {  useParams } from "react-router";
-import { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router";
+import { useState, useEffect} from "react";
 import Card from "../Card";
-import Timer from '../Timer'
+import Timer from "../Timer";
 import "./style.css";
 
 // {
@@ -11,15 +11,15 @@ import "./style.css";
 //   isSucssed: false,
 // },
 
-
 function Game() {
   const userName = useParams().userName;
+
   const [arr, setArr] = useState([
     {
-  name: "plants7",
-  src: "https://i.pinimg.com/564x/a1/53/da/a153da0f37dc7386b2c67502d80ae9f7.jpg",
-  isSucssed: false,
-},
+      name: "plants7",
+      src: "https://i.pinimg.com/564x/a1/53/da/a153da0f37dc7386b2c67502d80ae9f7.jpg",
+      isSucssed: false,
+    },
 
     {
       name: "plants1",
@@ -46,7 +46,6 @@ function Game() {
       src: "https://i.pinimg.com/564x/15/56/be/1556becb4658034446f88eb308d8bf9d.jpg",
       isSucssed: false,
     },
-
 
     {
       name: "plants8",
@@ -105,20 +104,20 @@ function Game() {
   // rest choises
   useEffect(() => {
     if (img1 && img2) {
-      if (img1.name === img2.name) {  // match card => add 1 to result &rest
+      if (img1.name === img2.name) {
+        // match card => add 1 to result &rest
         result = result + 1;
 
-        let cards = arr.map((elem) => {//edit selected to true
+        let cards = arr.map((elem) => {
+          //edit selected to true
           if (elem.name === img1.name) {
             return { ...elem, isSucssed: true };
-          }else{
-            return elem
+          } else {
+            return elem;
           }
-          
         }); //loop end
-        setArr(cards)
+        setArr(cards);
         restFunc(img1, img2);
-
       } else {
         restFunc(img1, img2);
       }
@@ -135,14 +134,28 @@ function Game() {
     return;
   };
 
+  // end of the game
+  const history = useHistory();
+  const gameOver = () => {
+    if (result === 9) {
+      history.push(`/Result/${userName}`);
+    }
+  };
+  gameOver();
+
+
   return (
     <div className="game">
-  
       <div className="gap"></div>
-      <p>Good Luck <span>{userName}!</span> You have only <span><Timer/> </span>You Score is = {result}</p>
+      <p>
+        Good Luck <span>{userName}!</span> You have only{" "}
+        <span>
+          <Timer />{" "}
+        </span>
+        You Score is = {result}
+      </p>
       <div className="gap"></div>
-     
-    
+
       <div className="gap"></div>
 
       <div className="gameBox">

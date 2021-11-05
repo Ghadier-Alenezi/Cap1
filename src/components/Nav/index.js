@@ -16,7 +16,7 @@ const Nav = () => {
           <Link to="/Game/:userName">Game</Link>
         </li>
         <li>
-          <Link to="/Result">Result</Link>
+          <Link to="/Result/:userName">Result</Link>
         </li>
       </ul>
     </div>

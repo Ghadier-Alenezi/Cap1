@@ -4,9 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(https://external-preview.redd.it/0cRUVEHWT6ZfknVjAM3cIA7y7w7s8UEZc8838Usax7Y.png?width=960&crop=smart&auto=webp&s=bf3bb7f83b821502d62c1d25628cd60dced220a2);
+  /* background-image: url(https://media3.giphy.com/media/3o7TKzyIPAiMR1pErK/200w.webp?cid=ecf05e47ehpuj9lobtp9jfuz7ekk8pkmxyps3xjrj1ei7mig&rid=200w.webp&ct=g); */
   background-repeat: no-repeat;
-  object-fit: cover;
+  background-size: contain;
+  object-fit: none;
+  transform: matrix3d(23);
   background-position: center;
 }
 .userBox {
