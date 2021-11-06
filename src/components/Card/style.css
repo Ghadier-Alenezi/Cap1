@@ -1,9 +1,26 @@
 .card {
-
     position: relative;
-    
-
 }
+#back{
+
+    transition: transform 2s;
+}
+#back:hover{
+  
+    /* animation-duration: 2s; */
+    /* transform:rotateX(90deg) */
+    box-shadow: 10px 17px 27px 18px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 17px 27px 18px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 17px 27px 18px rgba(0,0,0,0.75);
+    
+ 
+}
+/* #font:hover{
+    transform: rotateY(90deg);
+    animation-duration: 2s;
+    transition: 2000ms;
+} */
+
 .front, .back {
     width: 150px;
     height: 200px;
@@ -11,26 +28,26 @@
     /* position: absolute; */
     border-radius: 8px;
     display: block;
+    /* backface-visibility: hidden; */
 }
-
 
 .card .front {
     transform: rotateY(90deg);
-    position:absolute;
+    position:absolute; 
 }
-.switch .front {
+
+.switch .front{
 transform: rotateY(0deg);
 position:absolute;
 }
 .showImg {
-
     visibility: visible;
     cursor: pointer;
     object-fit: cover;
 }
 .hideImg {
-visibility: hidden;
+/* visibility: hidden; */
 cursor: pointer;
 object-fit: cover;
-
 }
+

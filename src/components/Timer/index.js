@@ -2,20 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 const Timer = (props) => {
+const result = props.result;
   let [timeSeconds, setTimeSeconds] = useState("60");
 
-  useEffect(() => {
+    const history = useHistory();
+  const userName = useParams().userName;
+  const playAgain =()=> { //for restart
+    history.push(`/Game/${userName}`);
+  }
+  useEffect(() =>{
     const interval = setInterval(() => {
+   
       updateTime();
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const history = useHistory();
-  const userName = useParams().userName;
-  const playAgain =()=> {
-    history.push(`/Game/${userName}`);
-  }
+
 
   function updateTime() {
     // check is it print every sec
@@ -23,8 +26,8 @@ const Timer = (props) => {
       setTimeSeconds(timeSeconds--);
       // console.log(timeSeconds);
     } else {
-      history.push(`/Result/${userName}/${props.result}`);
-     
+      // history.push(`/Result/${userName}/${result}`);
+     props.toResult()
     }
   }
   useEffect(() => updateTime, [10]);

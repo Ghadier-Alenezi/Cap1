@@ -1,24 +1,27 @@
 import React from "react";
 import { useParams, useHistory } from "react-router";
 import { useState, useEffect } from "react";
+import ReactHowler from 'react-howler'
+import music from  "./music4.ogg";
+import {GoUnmute, GoMute} from "react-icons/go"
+import {GrPowerShutdown} from "react-icons/gr"
 import Card from "../Card";
-import Timer from "../Timer";
+
 import "./style.css";
-import { Route, Link, Switch } from "react-router-dom";
-import User from "../User";
+
 
 // {
 //   name: "plants7",
 //   src: "https://i.pinimg.com/564x/ed/30/a1/ed30a12b5f672ea74ca5ed635a87871f.jpg",
 //   isSucssed: false,
 // },
-
 function Game() {
-  const userName = useParams().userName;
+
+
+  const {timer,userName} = useParams();
+  console.log(useParams().timer);
   const history = useHistory();
-  const userNameF = (e) => {
-    history.push(`/Result/${userName}/${result}`);
-  };
+
   const [arr, setArr] = useState([
     {
       name: "plants7",
@@ -68,11 +71,13 @@ function Game() {
       isSucssed: false,
     },
   ]);
+  
   let [result, setResult] = useState(0); // init value result =0
+  let [timeSeconds, setTimeSeconds] = useState(timer);
   let [img1, setImage1] = useState(null); // intial value for obj img1 =null
   let [img2, setImage2] = useState(null); // intial value for obj img2 =null
   let [permission,setPermission] =useState(false);
-
+  let [mute,setMute] =useState(false);
   //  array & copy array elem => array.length*2
   useEffect(() => {
     let tempArr = [...arr, ...arr];
@@ -111,28 +116,28 @@ function Game() {
   useEffect(() => {
     if (img1 && img2) {
       setPermission(true)
-      if (img1.name === img2.name) {
+      if (img1.name === img2.name  && img1.id != img2.id) {
         // match card => add 1 to result &rest
-        result = result + 1;
+        setResult(result++)
 
         let cards = arr.map((elem) => {
           //edit selected to true
-          if (elem.name === img1.name) {
+          if (elem.name === img1.name ) {
             return { ...elem, isSucssed: true };
           } else {
             return elem;
           }
         }); //loop end
         setArr(cards);
-
-        setTimeout(()=>restFunc(), 1000);// to hold card until card back
+        setTimeout(()=>restFunc(), 800);// to hold card until card back
       } else {
-        setTimeout(()=>restFunc(), 1000);// to hold card until card back
+        setTimeout(()=>restFunc(), 800);// to hold card until card back
       }
       setResult(result);
-      if (result === 9) {
-        //if user finsh    // end of the game
-        history.push(`/Result/${userName}/${result}`);
+      if (result === arr.length/2) {
+        //if user finsh  
+          // end of the game
+          history.push(`/Result/${userName}/${result}`);
       } // to show on screen
     }
   }, [img1, img2]); // depend if there is img1,img2 or do not do the effect
@@ -146,51 +151,68 @@ function Game() {
     setPermission(false);
     setResult(result);
   }; 
-    // end of the game
-    // const history = useHistory();
-    // const gameOver = () => {
-    //   if (result === 9) {
-    //     history.push(`/Result/${userName}`);
-    //   }
-    // };
-    // gameOver();
-
-    // quit alert
-    let quit = () => {
-      if (window.confirm("Are you sure you want to quit the game?!")) {
-        
-        
-        window.open("/","Thank you for Playing");
+  
+    useEffect(() =>{
+      console.log("result",result);
+      const interval = setInterval(() => {
+       updateTime();
+      }, 1000);
+      return () => clearInterval(interval);
+    }, [result]);
+  
+  
+  
+    function updateTime() {
+      // check is it print every sec
+      if (timeSeconds > 0) {
+        setTimeSeconds(timeSeconds--);
+      } else {
+        history.push(`/Result/${userName}/${result}`);
       }
-      
-      
-      // let quitAlert = window.confirm(
-      //   "Are you sure you want to quit"
-      // )
-      // if (quitAlert === true) {
-      //   console.log("confirm");
-      //  <Switch>
-      //    <Route exact path="/User" component={User} />
-      //   {/* <User/> */}
-        
-      //  </Switch>
-      // } 
     }
 
+    // useEffect(() => updateTime, [10]);
+
+const muteFunc=()=>{
+mute=!mute
+  window.Howler.mute(mute)
+  setMute(mute)
+}
+
+let quit = () => {
+  if (window.confirm("Are you sure you want to quit the game?!")) {
+    
+    
+    window.open(`/Result/${userName}/${result}`,"_self");
+  }
+}
   return (
+
     <div className="game">
-      <div className="gameInfo">
-      <p>
-        Good Luck <span>{userName}!</span> You have only
-        <span>
-          <Timer result={result} />
-        </span>
-        second. You Score is = {result}
-      </p>
-      <button onClick={quit}>
-        {/* <Link to="/">Quit</Link> */}
-        click
-      </button>
+ 
+            <ReactHowler
+        // src='http://goldfirestudios.com/proj/howlerjs/sound.ogg'
+        src={music}
+        playing={true}
+        preload={true}
+      />
+
+  <div className="gameInfo">
+  
+      <div className="userName">
+      <div className="timer-GL">
+      <span className ="timer">{timeSeconds}</span>
+      <h1>Good Luck </h1>
+      </div>
+      <span>{userName}!</span>
+      </div >
+      <div className="score">
+      <h2>Score
+      <span id="score">{result}</span>
+  </h2></div>
+
+  
+
       </div>
       <div className="gameBox">
         {arr.map((elem, i) => (
@@ -201,11 +223,27 @@ function Game() {
             key={i}
             switchCard={elem === img1 || elem === img2 || elem.isSucssed}
             permission = {permission}
+            loop={true}
           />
         ))}
+      </div>
+           
+      <div className="gameSitting">
+     
+      <button className="muteBtn"
+       onClick={
+        muteFunc
+      }>{mute?<GoMute/>: <GoUnmute/>}
+        </button>
+        <button className="muteBtn" onClick={quit}>
+       <GrPowerShutdown/>
+      </button>
+        <span>
+          {/* <Timer result={result} toResult={toResult}/> */}
+        </span>
       </div>
     </div>
   );
 }
 
-export default Game;
+export default Game 

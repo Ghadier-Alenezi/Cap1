@@ -11,13 +11,13 @@ const Nav = () => {
           <Link to="/User">User</Link>
         </li>
         <li>
-          <Link to="/Description/:userName">Description</Link>
+          <Link to="/Description/">Description</Link>
         </li>
         <li>
           <Link to="/Game/:userName">Game</Link>
         </li>
         <li>
-          <Link to="/Result/:userName">Result</Link>
+          <Link to="/Result/:userName/:result">Result</Link>
         </li>
       </ul>
     </div>
