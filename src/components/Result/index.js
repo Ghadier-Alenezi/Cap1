@@ -33,9 +33,9 @@ const Result = () => {
         <div className="scoreBox">
           <div className="up">
             <h1>{userName}</h1>
-           <span> {(result==9)? "WINNER" :"LOSER"}</span>
             <p>Score</p>
             <span id="score">{result}</span>
+           <span className="word"> {(result==9)? "WINNER" :"LOSER"}</span>
           </div>
 
           <div className="down">

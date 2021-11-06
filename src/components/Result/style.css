@@ -27,6 +27,7 @@ p {
   justify-content: space-between;
   align-items: center;
   position: relative;
+
   /* background: url(./scoreBg.gif) 0 0; */
 }
 .scoreBox {
@@ -38,15 +39,14 @@ p {
   border-radius: 10 px;
   padding: 20 px;
   background-color: rgb(54 14 63 / 43%);
+  padding: 20px;
 }
-
 
 .up {
   width: 100%;
   height: 70%;
   display: flex;
   flex-direction: column;
- 
   justify-content: space-evenly;
   align-items: center;
   position: relative;
@@ -57,7 +57,6 @@ p {
   width: 100%;
   display: flex;
   flex-direction: row;
-
   justify-content: center;
   position: relative;
   bottom: 0;
@@ -71,6 +70,7 @@ p {
   border-radius: 30px;
   border: none;
   font-size: 1.5rem;
+  margin-top: 20px;
 }
 
 #restartBtn:hover {
@@ -78,6 +78,10 @@ p {
 }
 #score {
   font-size: 5rem;
+  text-align: center;
+}
+.word {
+  text-align: center;
 }
 h1 {
   font-size: 3rem;
@@ -86,4 +90,34 @@ h1 {
 p {
   color: #ff217c;
   font-size: 2.5rem;
+}
+@media screen and (max-width: 992px) {
+  .scoreBox {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border-radius: 10
+px
+;
+    padding: 20
+px
+;
+    background-color: rgb(54 14 63 / 43%);
+    padding: 20
+px
+;
+  }
+}
+@media screen and (max-width: 600px) {
+  .scoreBox {
+    position: absolute;
+    /* right: 5%; */
+    top: 25%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(54 14 63 / 43%);
+    padding: 20px;
+  }
 }

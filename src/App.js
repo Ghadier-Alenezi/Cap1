@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Nav from "./components/Nav";
 import Level from "./components/Level";
 import Result from "./components/Result";
 import Description from "./components/Description";
@@ -11,7 +10,6 @@ import Video from "./components/Video";
 const App = () => {
   return (
     <>
-      {/* <Nav/> */}
       <Switch>
         <Route exact path="/" component={Video} />
         <Route exact path="/Description" component={Description} />

@@ -11,8 +11,8 @@ const Video = () => {
     e.target.playVideo();
   }
   const opts = {
-    height: "500px",
-    width: "600px",
+    height: "650px",
+    width: "500px",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,

@@ -6,15 +6,8 @@ import music from  "./music4.ogg";
 import {GoUnmute, GoMute} from "react-icons/go"
 import {GrPowerShutdown} from "react-icons/gr"
 import Card from "../Card";
-
 import "./style.css";
 
-
-// {
-//   name: "plants7",
-//   src: "https://i.pinimg.com/564x/ed/30/a1/ed30a12b5f672ea74ca5ed635a87871f.jpg",
-//   isSucssed: false,
-// },
 function Game() {
 
 

@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react'
 import { useHistory} from "react-router-dom"
 import { FaUserAlt, FaRegPlayCircle } from "react-icons/fa";
-// import Video from "../Video"
+
 import StarfieldAnimation from 'react-starfield-animation'
 
 import "./style.css";
@@ -26,7 +25,6 @@ history.push(`/Level/${e.target.userName.value}`);
           zindex:-1,
         }}
       />
-      {/* <Video/> */}
       <div className="boxInfo">
         <div>
       <FaUserAlt className="avatar"/>
